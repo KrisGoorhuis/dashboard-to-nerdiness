@@ -1,0 +1,12 @@
+#sidebar_main {
+   position: fixed;
+   background: rgba(0, 0, 0, .3);
+   left: 0px;
+   height: 100vh;
+   width: 200px;
+}
+
+#site_listings {
+   width: 100%;
+   padding: 0px;
+}
