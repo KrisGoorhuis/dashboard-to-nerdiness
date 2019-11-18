@@ -4,7 +4,7 @@ import { createStore, combineReducers } from 'redux'
 import reducer from './reducers/reducer.js'
 import redditReducer from './reducers/redditReducer'
 
-let rootReducer = combineReducers({reducer})
+let rootReducer = combineReducers({reducer, redditReducer})
 
 const store = createStore(
    rootReducer,

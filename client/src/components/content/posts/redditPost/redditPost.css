@@ -1,0 +1,29 @@
+.reddit_post_container {
+   padding: 5px;
+   margin: 2px;
+   background-color: var(--mustard);
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   text-decoration: none;
+   opacity: 1.0;
+   transition: .2s;
+}
+
+.reddit_post_container:hover {
+   opacity: .8;
+   transition: .2s;
+}
+
+.reddit_post_title {
+   color: var(--burgundy);
+   margin: 5px;
+   text-align: left;
+}
+
+.reddit_post_details {
+   display: flex;
+   justify-content: space-around;
+   color: white;
+   font-size: 12px;
+}

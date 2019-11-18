@@ -16,12 +16,40 @@ https://create-react-app.dev/docs/proxying-api-requests-in-development/
 ### Sidebar
 Left side.
 Control component at the top.
-Controls contain the ability to input something new. Copy and paste a URL? Not sure yet.
 
-Their personal list of subscribed sites is below, listed nicely.
-Each listing contains a checkbox. The check determines whether or not it is displayed in the central area.
+We have a component for each of the sites. We can, via user controls, add a new component for a site type.
+Each component is customizeable - eg the reddit one lets you choose the subreddit.
+
+Each sidebar listing contains a checkbox. The check determines whether or not it is displayed in the central area.
 
 Sidebar will expand into view based on mouse position by default, but this behavior can be toggled to manual button clicks in the controls.
 
 ### Center
-# dashboard-to-nerdiness
+
+### APIs
+#### Reddit
+OAuth was inscrutable and there was no easily found node.js solution out there, and we don't want to deal with token expiry. So we use a third party wrap called [Snoowrap](https://github.com/not-an-aardvark/snoowrap) with the script type app.
+
+Using an existing Reddit account, create an app in user preferences of the script type.
+It will generate an app ID and app secret. Pass these and your account name / password to snoowrap, then just go!
+
+Remember to ping initReddit before trying to use it.
+
+Useful properties:
+created_utc
+title
+permalink
+author
+comments (array)
+
+
+
+
+#### Progression flow
+Users add a subreddit on the left.
+This causes the fetch to occur.
+We use the presence of actual results to verify that the subreddit existed, and if it does, we add it to our store of subreddits.
+
+Sidebar receives updated subreddit listing state, updates its list.
+
+Main content column can just loop through those subreddits.

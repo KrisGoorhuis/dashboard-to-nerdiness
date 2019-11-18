@@ -1,12 +1,63 @@
-#sidebar_main {
+body {
+   --sidebar-width: 250px;
+   --sidebar-spacer: 40px;
+}
+
+
+/* 
+   sidebar_main is fixed to the side, but sidebar_container,
+   with a transparent background, spans the full height
+    of the document.
+   This way we can ensure our side bar always butts up nicely
+   against our central content column;
+
+
+*/
+
+
+#sidebar_container {
+   width: var(--sidebar-width);
    position: fixed;
-   background: rgba(0, 0, 0, .3);
-   left: 0px;
-   height: 100vh;
-   width: 200px;
+   padding-right: 0px;
+   height: 100%;
+   display: flex;
+   margin-left: calc(var(--sidebar-spacer) - var(--sidebar-width));
+   transition: 0.3s;
+   background-color: var(--brown);
+
+}
+
+#sidebar_container:hover {
+   transition: .3s;
+   margin-left: 0px;
+}
+
+#sidebar_main {
+   position: relative;
+   color: white;
+   height: 100%;
+   width: 100%;
+   z-index: 2;
+   transition: .3s;
+   margin: 0px;
+   padding: 0px;
+}
+
+
+
+/* Width here + sidebar_container:hover padding should === container width  */
+#sidebar_spacer {
+   width: 40px;
+   height: 100%;
+   /* background-color: red; */
+   z-index: 3;
+   position: relative;
+   margin: 0px;
+   padding: 0px;
 }
 
 #site_listings {
    width: 100%;
    padding: 0px;
+   margin: 0px;
 }
