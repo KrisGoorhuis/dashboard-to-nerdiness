@@ -47,7 +47,6 @@ let r = new snoowrap({
 
 
 app.post('/getHotReddit', async (req, res) => {
-   console.log(req.body.subreddit)
    let hots = await r.getSubreddit(req.body.subreddit).getHot()
    res.send(hots)
 })

@@ -30,9 +30,7 @@ let RedditPost = (props) => {
          <h4 className="reddit_post_title">{props.post.title}</h4>
          <section className="reddit_post_details">
             <small>In '{props.post.subreddit}'</small>
-            <div>
-               <small>{props.post.score}</small>
-            </div>
+            <small>{props.post.score}</small>
             <small>On {timeConverter(props.post.created_utc)}</small>
             <small className="reddit_post_author">By {props.post.author}</small>
          </section>

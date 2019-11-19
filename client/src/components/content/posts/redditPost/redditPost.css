@@ -1,7 +1,7 @@
 .reddit_post_container {
    padding: 5px;
    margin: 2px;
-   background-color: var(--mustard);
+   background-color: var(--burgundy);
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -16,14 +16,16 @@
 }
 
 .reddit_post_title {
-   color: var(--burgundy);
+   color: var(--mustard);
    margin: 5px;
    text-align: left;
 }
 
 .reddit_post_details {
-   display: flex;
-   justify-content: space-around;
-   color: white;
+   /* display: flex;
+   justify-content: space-around; */
+   color: rgba(255, 255, 255, .8);
    font-size: 12px;
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
 }

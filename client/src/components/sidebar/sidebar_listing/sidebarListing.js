@@ -4,21 +4,25 @@ import { connect } from 'react-redux'
 
 let SidebarListing = (props) => {
    
-   console.log(props)
    let handleChange = (e) => {
-      console.log(e.target.checked)
+      console.log(e.target)
       props.dispatch({type: 'TOGGLE_HIDDEN_SUBREDDIT', payload: props.subreddit})
    }
 
+
    return (
       <li className="sidebar_listing">
-         <input id="testinput" type="checkbox" onChange={handleChange} />
-         <div>
-            <details>
-               <summary>{props.subreddit}</summary>
-               {props.subreddit}
-            </details>
-         </div>
+         <input 
+            className="listing_checkbox"
+            name="checkerbox" 
+            type="checkbox" 
+            onChange={handleChange} 
+         />
+         <p className="listing_details">{props.subreddit}</p>
+         {/* <details className="listing_details">
+            <summary>{props.subreddit}</summary>
+            {props.subreddit}
+         </details> */}
       </li>
    )
 }

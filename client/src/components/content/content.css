@@ -21,3 +21,15 @@
    justify-content: center;
    align-items: center;
 }
+
+#no_posts {
+   height: 200px;
+}
+
+#no_posts p {
+   margin: 0px;
+}
+
+#no_posts span {
+   font-size: 20px;
+}

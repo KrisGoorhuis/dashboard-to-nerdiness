@@ -13,6 +13,10 @@ body {
   --yellow: #B1AB76;
   --mustard: #9D875E;
   --burgundy: #582B2F;
+
+  --sidebar-left-column: calc(100% * 1/3);
+  --sidebar-right-column: calc(100% * 2/3);
+
 }
 
 code {

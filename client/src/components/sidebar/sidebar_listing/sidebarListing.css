@@ -3,4 +3,27 @@
    flex-direction: row;
    width: 100%;
    height: 50px;
+   align-items: flex-start;
+   justify-content: space-around;
+}
+
+.sidebar_listing p {
+   margin: 0px;
+}
+
+.listing_checkbox {
+   width: var(--sidebar-left-column)
+}
+
+.listing_details {
+   height: 0px;
+   width: var(--sidebar-right-column);
+   display: flex;
+   justify-content: flex-start
+}
+
+.listing_details summary {
+   display: flex;
+   justify-content: flex-start
+
 }

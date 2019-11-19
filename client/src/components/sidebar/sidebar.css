@@ -21,7 +21,7 @@ body {
    padding-right: 0px;
    height: 100%;
    display: flex;
-   margin-left: calc(var(--sidebar-spacer) - var(--sidebar-width));
+   /* margin-left: calc(var(--sidebar-spacer) - var(--sidebar-width)); */
    transition: 0.3s;
    background-color: var(--brown);
 
@@ -34,7 +34,7 @@ body {
 
 #sidebar_main {
    position: relative;
-   color: white;
+   color: var(--green);
    height: 100%;
    width: 100%;
    z-index: 2;
@@ -43,7 +43,21 @@ body {
    padding: 0px;
 }
 
+#sidebar_main legend {
+   display: flex;
+   flex-direction: row;
+   justify-content: space-around;
+   margin: 10px;
+   font-weight: bold;
+}
 
+#legend_hide {
+   width: var(--sidebar-left-column)
+}
+
+#legend_label {
+   width: var(--sidebar-right-column)
+}
 
 /* Width here + sidebar_container:hover padding should === container width  */
 #sidebar_spacer {
@@ -54,6 +68,7 @@ body {
    position: relative;
    margin: 0px;
    padding: 0px;
+   color: white;
 }
 
 #site_listings {

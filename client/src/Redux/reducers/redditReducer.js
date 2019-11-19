@@ -35,14 +35,19 @@ export default function redditReducer(state = initialState, action) {
          }
 
       case ('TOGGLE_HIDDEN_SUBREDDIT'):
-         let _hiddenSubreddits = [...state.hiddenSubreddits]
+         let _hidden = [...state.hiddenSubreddits]
+         let index = _hidden.indexOf(action.payload)
          
-         let index = _hiddenSubreddits.indexOf(action.payload)
-         _hiddenSubreddits[index] = !_hiddenSubreddits[index]
+         if (index !== -1) {
+            _hidden.splice(index, 1)
+         } 
+         else {
+            _hidden.push(action.payload)
+         }
 
          return {
             ...state,
-            hiddenSubreddits: _hiddenSubreddits
+            hiddenSubreddits: _hidden
          }
 
       default:
