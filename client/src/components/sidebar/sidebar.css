@@ -1,7 +1,7 @@
-body {
-   --sidebar-width: 250px;
+/* body {
+   --sidebar-width: 300px;
    --sidebar-spacer: 40px;
-}
+} */
 
 
 /* 
@@ -23,7 +23,7 @@ body {
    display: flex;
    /* margin-left: calc(var(--sidebar-spacer) - var(--sidebar-width)); */
    transition: 0.3s;
-   background-color: var(--brown);
+   background-color: var(--reddishbrown);
 
 }
 
@@ -74,5 +74,7 @@ body {
 #site_listings {
    width: 100%;
    padding: 0px;
+   padding-left: 50px;
+   padding-top: 30px;
    margin: 0px;
 }

@@ -1,8 +1,15 @@
 #controls_fieldset {
    margin: 0px;
    padding: 0px;
+   width: 90%;
+   margin: auto;
+   padding: 5px;
 }
 
-#add_button {
-   
+#info_message {
+   height: 30px;
+   margin: 0px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }

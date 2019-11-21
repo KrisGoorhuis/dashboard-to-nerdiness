@@ -4,6 +4,12 @@ const initialState = {
    hiddenSubreddits: []
 }
 
+// localStorage.removeItem('subreddits')
+if (localStorage.getItem('subreddits')) {
+   console.log(localStorage.getItem('subreddits'))
+   initialState.subreddits = JSON.parse(localStorage.getItem('subreddits'))
+}
+
 export default function redditReducer(state = initialState, action) {
 
    switch (action.type) {
@@ -19,6 +25,8 @@ export default function redditReducer(state = initialState, action) {
          }
 
       case ('ADD_SUBREDDIT'):
+         localStorage.setItem('subreddits', JSON.stringify([...state.subreddits, action.payload]))
+
          return {
             ...state,
             subreddits: [...state.subreddits, action.payload]
@@ -26,12 +34,17 @@ export default function redditReducer(state = initialState, action) {
 
       case ('REMOVE_SUBREDDIT'):
          let _subreddits = [...state.subreddits]
+         let _redditPosts = [...state.redditPosts]
 
-         _subreddits.filter( (subreddit) => subreddit !== action.payload)
-         
+         localStorage.setItem('subreddits', JSON.stringify([...state.subreddits, action.payload]))
+
+         _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
+         _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
+
          return {
             ...state,
-            subreddits: _subreddits
+            subreddits: _subreddits,
+            redditPosts: _redditPosts,
          }
 
       case ('TOGGLE_HIDDEN_SUBREDDIT'):
@@ -49,6 +62,7 @@ export default function redditReducer(state = initialState, action) {
             ...state,
             hiddenSubreddits: _hidden
          }
+         
 
       default:
          return state

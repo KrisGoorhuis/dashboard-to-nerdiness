@@ -5,21 +5,18 @@ import { connect } from 'react-redux'
 
 let SidebarControls = (props) => {
    let [text, setText] = useState('')
-   let [checkingSubreddit, setCheckingSubreddit] = useState(false)
-   let [invalidSubreddit, setInvalidSubreddit] = useState(false)
+   // let [checkingSubreddit, setCheckingSubreddit] = useState(false)
+   // let [invalidSubreddit, setInvalidSubreddit] = useState(false)
+   let [infoMessage, setInfoMessage] = useState('')
 
    let handleChange = (e) => {
       setText(e.target.value)
-
-      if (invalidSubreddit) {
-         setInvalidSubreddit(false)
-      }
+      setInfoMessage('')
    }
 
    let handleSubmit = (e) => {
       e.preventDefault();
-      setCheckingSubreddit(true)
-
+      setInfoMessage('Verifying subreddit exists...')
       
       fetch('/getHotReddit', {
          method: 'POST',
@@ -29,14 +26,16 @@ let SidebarControls = (props) => {
       .then( response => response.json())
       .then( json => {
          // Result length means we got a bunch of reddit posts back.
-         if (json.length > 0) { 
-            setCheckingSubreddit(false)
+         if (props.subreddits.indexOf(text) !== -1) {
+            setInfoMessage('Subreddit already listed.')
+         }
+         else if (json.length > 0) { 
+            setInfoMessage('')
             props.dispatch({type: 'ADD_SUBREDDIT', payload: text})
             props.dispatch({type: 'ADD_REDDIT_POSTS', payload: json})
          }
          else {
-            setCheckingSubreddit(false)
-            setInvalidSubreddit(true)
+            setInfoMessage('Invalid subreddit. Did the text match exactly?')
          }
       })
    }
@@ -53,21 +52,16 @@ let SidebarControls = (props) => {
             />
             <input id="add_button" type="submit" value="Add" />
          </form>
-         {
-            checkingSubreddit &&
-            <aside>Verifying subreddit exists...</aside>
-         }
-         {
-            invalidSubreddit &&
-            <aside>Invalid subreddit. Did the text match exactly?</aside>
-         }
+         <p id="info_message">
+            {infoMessage}
+         </p>
       </fieldset>
    )
 }
 
 let mapStateToProps = (state) => {
    return {
-
+      subreddits: state.redditReducer.subreddits
    }
 }
 

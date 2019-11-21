@@ -7,7 +7,7 @@ let Header = () => {
 
    return (
       <header>
-
+         <h3>Header Text</h3>
       </header>
    )
 }

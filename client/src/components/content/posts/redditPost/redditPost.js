@@ -12,10 +12,10 @@ let RedditPost = (props) => {
       var date = a.getDate();
       var hour = a.getHours();
       var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes()
-      var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+      // var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
       // var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
-      // year removed:
-      var time = date + ' ' + month + ' ' + ' ' + hour + ':' + min + ':' + sec ;
+      // year and removed:
+      var time = date + ' ' + month + ' ' + ' ' + hour + ':' + min;
 
       return time;
     }
@@ -27,12 +27,13 @@ let RedditPost = (props) => {
          target="_blank" 
          rel="noopener noreferrer"
       >
-         <h4 className="reddit_post_title">{props.post.title}</h4>
+         <h5 className="reddit_post_title">{props.post.title}</h5>
          <section className="reddit_post_details">
-            <small>In '{props.post.subreddit}'</small>
-            <small>{props.post.score}</small>
-            <small>On {timeConverter(props.post.created_utc)}</small>
-            <small className="reddit_post_author">By {props.post.author}</small>
+            <small>r/{props.post.subreddit}</small>
+            <small>Score: {props.post.score}</small>
+            <small>{timeConverter(props.post.created_utc)}</small>
+            <small className="reddit_post_author">{props.post.author}</small>
+            {/* <img src={props.post.thumbnail} /> */}
          </section>
       </a>
    )
