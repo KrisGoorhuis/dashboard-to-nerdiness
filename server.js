@@ -4,6 +4,7 @@ const path = require('path');
 const fetch = require('node-fetch');
 const config = require('./config.json')
 const snoowrap = require('snoowrap') // Reddit API wrapper
+const Feed = require('rss-to-json')
 
 const app = express();
 const port = process.env.PORT || 5000;
@@ -28,29 +29,62 @@ let r = new snoowrap({
 //   });
 // }
 
-// app.post('/getRedditAccessToken', async (req, res) => {
-
-//   // const r = new snoowrap({
-//   //   userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
-//   //   clientId: config.client_id,
-//   //   clientSecret: config.client_secret,
-//   //   username: config.username,
-//   //   password: config.password
-//   // });
-
-//   r.getHot().map(post => post.created_utc).then(console.log);
-// })
 
 
 // *** Routes ***
 
-
-
 app.post('/getHotReddit', async (req, res) => {
-   let hots = await r.getSubreddit(req.body.subreddit).getHot()
-   res.send(hots)
+   // Will get subreddits from database eventually. 
+   // Right now it's called for every sub in the broswer JS's redux store, which draws from localStorage
+   
+   let fetchPromises = []
+   let flattenedResults = []
+
+   let fetchPosts = async (subreddit) => {
+      return await r.getSubreddit(subreddit).getHot()
+   }
+
+   for (let i = 0; i < req.body.subreddits.length; i++) {
+      fetchPromises.push(fetchPosts(req.body.subreddits[i]))
+   }
+   
+   
+   Promise.all(fetchPromises).then( (results) => {
+
+      results.forEach( (subredditResults) => {
+         subredditResults.forEach( (post) => { flattenedResults.push(post)})
+      })
+   
+      console.log("flattened length")
+      console.log(flattenedResults.length)
+
+      res.send(flattenedResults)
+   })
+   
+   
+   // let hots = await r.getSubreddit(req.body.subreddit).getHot()
 })
 
+app.post('/saveMediumFeed', async (req, res) => {
+   // Save to database
+})
+
+app.post('/getMediumFeeds', async (req, res) => {
+   let feeds = []
+   // Will retrieve feed urls from database
+   console.log("request body: ")
+   console.log(req.body)
+
+   for (let i = 0; i < req.body.mediumFeeds.length; i++) {
+      Feed.load(req.body.mediumFeeds[i], (err, rss) => {
+         console.log(rss.items.length)
+         feeds[i] = rss.items
+      })
+   }
+   console.log("feeds:")
+   console.log(feeds)
+   res.send(feeds)
+})
 
 
 if (process.env.NODE_ENV === 'production') {

@@ -34,17 +34,17 @@ export default function redditReducer(state = initialState, action) {
 
       case ('REMOVE_SUBREDDIT'):
          let _subreddits = [...state.subreddits]
-         let _redditPosts = [...state.redditPosts]
-
-         localStorage.setItem('subreddits', JSON.stringify([...state.subreddits, action.payload]))
-
+         // let _redditPosts = [...state.redditPosts]
          _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
-         _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
+         localStorage.setItem('subreddits', JSON.stringify(_subreddits))
+
+         
+         // _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
 
          return {
             ...state,
             subreddits: _subreddits,
-            redditPosts: _redditPosts,
+            // redditPosts: _redditPosts,
          }
 
       case ('TOGGLE_HIDDEN_SUBREDDIT'):

@@ -15,8 +15,8 @@ let SidebarListing = (props) => {
       // The parent reverts to checkboxes beign shown, so the cancel button here has no onClick
       return (
          <div>
-            <i class="far fa-check-circle" onClick={confirmRemoval}></i>
-            <i class="far fa-times-circle"></i> 
+            <i className="far fa-check-circle" onClick={confirmRemoval}></i>
+            <i className="far fa-times-circle"></i> 
          </div>
       )
    }
@@ -52,7 +52,7 @@ let SidebarListing = (props) => {
    return (
       // Child of an <ul>
       <li className="sidebar_listing" > 
-         <h3 onClick={toggleExpand}>{props.subreddit}</h3>
+         <h3 onClick={toggleExpand}>r/{props.subreddit}</h3>
          <menu className="popdown_controls">
             <label>
                Hide

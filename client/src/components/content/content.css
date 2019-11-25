@@ -1,15 +1,21 @@
 #content_container {
    display: flex;
    justify-content: center;
-   width: 100%;
+   flex-direction: column;
+   padding-left: var(--main-content-left-padding);
+   padding-top: 20px;
+}
+
+#content_container header {
+   display: flex;
+   justify-content: flex-start;
+   padding-left: 50px;
 }
 
 #content_main {
    padding: 0px;
-   padding-left: var(--main-content-left-padding);
    min-height: 100vh;
    color: white;
-   /* max-width: 700px; */
    width: 100%;
    text-align: center;
 }

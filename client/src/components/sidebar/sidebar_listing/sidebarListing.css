@@ -12,8 +12,14 @@
 } */
 
 .sidebar_listing h3 {
-   margin: 10px;
+   padding: 10px;
    margin-top: 20px;
+   font-weight: 300;
+   margin: 0px;
+}
+
+.sidebar_listing h3:hover {
+   cursor: pointer;
 }
 
 

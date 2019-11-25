@@ -9,34 +9,23 @@ import Sidebar from './components/sidebar/sidebar.js'
 function App(props) {
 
    function fetchRedditPosts() {
-      let fetchPosts = async (subreddit) => {
-         return fetch('/getHotReddit', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({subreddit: subreddit})
-         })
-         .then( response => { return response.json() })
-      }
-
-      let fetchPromises = []
-      for (let i = 0; i < props.subreddits.length; i++) {
-         fetchPromises.push(fetchPosts(props.subreddits[i]))
-      }
-      
-      Promise.all(fetchPromises).then( (results) => {
-         let flattenedResults = []
-         results.forEach( (subredditResults) => {
-            subredditResults.forEach( (post) => { flattenedResults.push(post)})
-         })
-
-         console.log(flattenedResults)
-         props.dispatch({type: 'ADD_REDDIT_POSTS', payload: flattenedResults})
+      fetch('/getHotReddit', {
+         method: 'POST',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify({subreddits: props.subreddits})
       })
+      .then( response => response.json())
+      .then( data => props.dispatch({type: 'ADD_REDDIT_POSTS', payload: data}))
    }
 
    // Get all the inital posts
    function init() {
-      
+      fetch('/getMediumFeeds', {
+         method: 'POST',
+         headers: {'Content-Type': 'application/json'},
+         body: JSON.stringify({mediumFeeds: ['https://medium.com/feed/the-launchism']})
+      })
+      .then( response => { console.log(response.json()) })
 
       fetchRedditPosts()
    }

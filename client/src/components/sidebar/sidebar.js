@@ -16,6 +16,7 @@ let Sidebar = (props) => {
    return (
       <div id="sidebar_container">
          <main id="sidebar_main">
+            
             <SidebarControls />
             <section>
                <ul id="site_listings">
