@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import Content from './components/content/content.js'
 import Sidebar from './components/sidebar/sidebar.js'
 
+let feeds = ['https://medium.com/feed/the-launchism']
+
 
 function App(props) {
 
@@ -18,15 +20,23 @@ function App(props) {
       .then( data => props.dispatch({type: 'ADD_REDDIT_POSTS', payload: data}))
    }
 
-   // Get all the inital posts
-   function init() {
-      fetch('/getMediumFeeds', {
+   function fetchMediumPosts() {
+      fetch('/getMediumPosts', {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
-         body: JSON.stringify({mediumFeeds: ['https://medium.com/feed/the-launchism']})
+         body: JSON.stringify({mediumPublications: props.mediumPublications})
       })
-      .then( response => { console.log(response.json()) })
-
+      .then( response => response.json())
+      .then( data => {
+         console.log(data)
+         props.dispatch({type: ''})
+      })
+      // .then( data => props.dispatch({type: 'ADD_PUBLICATION', payload: }))
+   }
+   // Get all the inital posts
+   function init() {
+      
+      fetchMediumPosts()
       fetchRedditPosts()
    }
 
@@ -44,7 +54,8 @@ function App(props) {
 
 let mapStateToProps = (state) => {
    return {
-      subreddits: state.redditReducer.subreddits
+      subreddits: state.redditReducer.subreddits,
+      mediumPublications: state.mediumReducer.publications
    }
 }
 

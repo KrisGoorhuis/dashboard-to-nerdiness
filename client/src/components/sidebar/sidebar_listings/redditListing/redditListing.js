@@ -1,18 +1,13 @@
 import React, { useState } from 'react'
-import './sidebarListing.css'
+import './redditListing.css'
 import { connect } from 'react-redux'
 
-import confirm from 'assets/confirm.svg'
-import cancel from 'assets/cancel.svg'
 
-
-
-
-let SidebarListing = (props) => {
+let RedditListing = (props) => {
    let [confirming, setConfirming] = useState(false)
 
    let ConfirmationBox = () => {
-      // The parent reverts to checkboxes beign shown, so the cancel button here has no onClick
+      // The parent reverts to checkboxes being shown, so the cancel button here has no onClick
       return (
          <div>
             <i className="far fa-check-circle" onClick={confirmRemoval}></i>
@@ -35,7 +30,6 @@ let SidebarListing = (props) => {
    }
 
    function confirmRemoval() {
-      console.log("Dispatching")
       props.dispatch({type: 'REMOVE_SUBREDDIT', payload: props.subreddit})
    }
 
@@ -75,9 +69,9 @@ let SidebarListing = (props) => {
 
 let mapStateToProps = (state) => {
    return {
-      subreddits: state.redditReducer.subreddits
+      // subreddits: state.redditReducer.subreddits
    }
 }
 
 
-export default connect(mapStateToProps)(SidebarListing)
+export default connect(mapStateToProps)(RedditListing)

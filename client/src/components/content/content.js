@@ -4,10 +4,11 @@ import { connect } from 'react-redux'
 import RedditPost from './posts/redditPost/redditPost.js'
 
 let Main = (props) => {
-   // let [sortedPosts, setSortedPosts] = useState([])
-   let test
+   let [processedPosts, setProcessedPosts] = useState([])
 
    let sortAndFilter = (posts) => {
+
+
       let _posts = posts
       // Remove posts from hidden subreddits
       _posts = _posts.filter((post) => props.hiddenSubreddits.indexOf(post.subreddit) === -1)
@@ -27,9 +28,7 @@ let Main = (props) => {
    }
 
    useEffect(() => {
-      // sortAndFilter(props.redditPosts)
-      // test = sortAndFilter(props.redditPosts)
-      // console.log(test)
+      // sortAndFilter()
    })
 
    return (
@@ -67,6 +66,7 @@ let mapStateToProps = (state) => {
       redditPosts: state.redditReducer.redditPosts,
       subreddits: state.redditReducer.subreddits,
       hiddenSubreddits: state.redditReducer.hiddenSubreddits
+
    }
 }
 

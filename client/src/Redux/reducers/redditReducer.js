@@ -1,12 +1,12 @@
 const initialState = {
-   subreddits: ['totalwar'], // Text strings
+   subreddits: ['test'], // Text strings
    redditPosts: [],
    hiddenSubreddits: []
 }
 
+// If this computer has used the site before, initialState will be updated before it's used. Same for other source sites (see other reducers)
 // localStorage.removeItem('subreddits')
 if (localStorage.getItem('subreddits')) {
-   console.log(localStorage.getItem('subreddits'))
    initialState.subreddits = JSON.parse(localStorage.getItem('subreddits'))
 }
 
@@ -15,13 +15,19 @@ export default function redditReducer(state = initialState, action) {
    switch (action.type) {
       case ('ADD_REDDIT_POSTS'):
          // Payload is an array
-         let _posts = [...state.redditPosts]
-
-         _posts = _posts.concat(action.payload)
+         var _posts = [...state.redditPosts]
 
          return {
             ...state,
-            redditPosts: _posts
+            redditPosts: _posts.concat(action.payload)
+         }
+      
+      case ('REMOVE_REDDIT_POSTS'):
+         var _posts = [...state.redditPosts]
+
+         return {
+            ...state,
+            redditPosts: _posts.filter( post => post.subreddit !== action.payload.subreddit)
          }
 
       case ('ADD_SUBREDDIT'):
