@@ -1,7 +1,7 @@
 const initialState = {
    subreddits: ['test'], // Text strings
    redditPosts: [],
-   hiddenSubreddits: []
+   hiddenSubreddits: [],
 }
 
 // If this computer has used the site before, initialState will be updated before it's used. Same for other source sites (see other reducers)
@@ -15,19 +15,19 @@ export default function redditReducer(state = initialState, action) {
    switch (action.type) {
       case ('ADD_REDDIT_POSTS'):
          // Payload is an array
-         var _posts = [...state.redditPosts]
+         let addingPosts = [...state.redditPosts]
 
          return {
             ...state,
-            redditPosts: _posts.concat(action.payload)
+            redditPosts: addingPosts.concat(action.payload)
          }
       
       case ('REMOVE_REDDIT_POSTS'):
-         var _posts = [...state.redditPosts]
+         let removingPosts = [...state.redditPosts]
 
          return {
             ...state,
-            redditPosts: _posts.filter( post => post.subreddit !== action.payload.subreddit)
+            redditPosts: removingPosts.filter( post => post.subreddit !== action.payload.subreddit)
          }
 
       case ('ADD_SUBREDDIT'):
@@ -40,17 +40,18 @@ export default function redditReducer(state = initialState, action) {
 
       case ('REMOVE_SUBREDDIT'):
          let _subreddits = [...state.subreddits]
-         // let _redditPosts = [...state.redditPosts]
-         _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
-         localStorage.setItem('subreddits', JSON.stringify(_subreddits))
+         let _redditPosts = [...state.redditPosts]
 
+         _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
+         _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
          
-         // _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
+         
+         localStorage.setItem('subreddits', JSON.stringify(_subreddits))
 
          return {
             ...state,
             subreddits: _subreddits,
-            // redditPosts: _redditPosts,
+            redditPosts: _redditPosts,
          }
 
       case ('TOGGLE_HIDDEN_SUBREDDIT'):

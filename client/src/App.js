@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 import Content from './components/content/content.js'
 import Sidebar from './components/sidebar/sidebar.js'
 
-let feeds = ['https://medium.com/feed/the-launchism']
-
 
 function App(props) {
 
@@ -21,6 +19,8 @@ function App(props) {
    }
 
    function fetchMediumPosts() {
+      console.log("before")
+      console.log(props.mediumPublications)
       fetch('/getMediumPosts', {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
@@ -29,15 +29,47 @@ function App(props) {
       .then( response => response.json())
       .then( data => {
          console.log(data)
-         props.dispatch({type: ''})
+         props.dispatch({type: 'ADD_MEDIUM_POSTS', payload: data})
       })
-      // .then( data => props.dispatch({type: 'ADD_PUBLICATION', payload: }))
    }
+
+   function sortAndFilterPosts() {
+      // See stickynotes. This looks like it'll run before posts are fetched.
+      let _posts = []
+      
+      // The time property of each of these is different. We're going to add a .formattedTime 
+      // tFormReddit
+      
+      _posts.concat(props.redditPosts)
+      _posts.concat(props.mediumPosts)
+
+      // Trues survive. Returned bool logic depends upon what type of post it is.
+      _posts.filter( (post) => {
+         if (post.subreddit) {
+            return props.hiddenSubreddits.indexOf(post.subreddit) === -1
+         }
+         else if (post.mediumPublication) {
+            
+         }
+      })
+
+      props.dispatch({type: 'SET_PROCESSED_POSTS', payload: _posts})
+
+
+      // old:
+      // Remove posts from hidden subreddits
+      _posts = _posts.filter((post) => props.hiddenSubreddits.indexOf(post.subreddit) === -1)
+      // Sort by date
+      _posts = _posts.sort((a, b) => b.created_utc - a.created_utc)
+
+   }
+
    // Get all the inital posts
    function init() {
-      
       fetchMediumPosts()
       fetchRedditPosts()
+
+      sortAndFilterPosts()
    }
 
    useEffect(() => {

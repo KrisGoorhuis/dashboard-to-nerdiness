@@ -34,7 +34,7 @@ let Sidebar = (props) => {
                <ul className="site_listings">
                   {
                      props.mediumPublications.map( (publication, index) => {
-                        return <MediumListing publication={publication} />
+                        return <MediumListing publication={publication} key={index} />
                      })
                   }
                </ul>
@@ -48,7 +48,7 @@ let Sidebar = (props) => {
 let mapStateToProps = (state) => {
    return {
       subreddits: state.redditReducer.subreddits,
-      mediumPublications: state.mediumReducer.publications
+      mediumPublications: state.mediumReducer.mediumPublications
    }
 }
 

@@ -3,7 +3,7 @@ import './mediumPost.css'
 
 let MediumPost = (props) => {
    return (
-      <a></a>
+      <a href='localhost:3000'>temp</a>
    )
 }
 

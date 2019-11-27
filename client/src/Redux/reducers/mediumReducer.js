@@ -1,11 +1,11 @@
 const initialState = {
-   publications: ['the-launchism', 'free-code-camp'],
+   mediumPublications: ['the-launchism', 'free-code-camp'],
    mediumPosts: [],
    hiddenPublications: [],
 }
 
 if (localStorage.getItem('mediumPublications')) {
-   initialState.publications = JSON.parse(localStorage.getItem('mediumPublications'))
+   initialState.mediumPublications = JSON.parse(localStorage.getItem('mediumPublications'))
 }
 
 export default function mediumReducer(state = initialState, action) {
@@ -15,32 +15,26 @@ export default function mediumReducer(state = initialState, action) {
 
          return {
             ...state,
-            publications: [...state.publications, action.payload]
+            mediumPublications: [...state.mediumPublications, action.payload]
          }
       case ('REMOVE_PUBLICATION'):
-         let _publications = [...state]
+         let _mediumPublications = [...state.mediumPublications]
+         let removingPosts = [...state.mediumPosts]
+
 
          return {
             ...state,
-            publications: _publications.filter( pub => pub !== action.payload)
+            mediumPublications: _mediumPublications.filter( pub => pub !== action.payload),
+            mediumPosts: removingPosts.filter(post => post.publication !== action.payload.publication)
          }
 
       case ('ADD_MEDIUM_POSTS'):
          // Payload is an array
-         var _posts = [...state.mediumPosts]
+         let addingPosts = [...state.mediumPosts]
 
          return {
             ...state,
-            mediumPosts: _posts.concat(action.payload)
-         }
-
-      case ('REMOVE_MEDIUM_POSTS'):
-         var _posts = [...state.mediumPosts]
-         
-
-         return {
-            ...state,
-            // mediumPosts: _posts.filter(post)
+            mediumPosts: addingPosts.concat(action.payload)
          }
 
       default:

@@ -1,11 +1,11 @@
 
 import { createStore, combineReducers } from 'redux'
 
-// import reducer from './reducers/reducer.js'
+import contentReducer from './reducers/contentReducer.js'
 import redditReducer from './reducers/redditReducer'
 import mediumReducer from './reducers/mediumReducer'
 
-let rootReducer = combineReducers({redditReducer, mediumReducer})
+let rootReducer = combineReducers({contentReducer, redditReducer, mediumReducer})
 
 const store = createStore(
    rootReducer,

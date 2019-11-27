@@ -76,7 +76,9 @@ app.post('/getMediumPosts', async (req, res) => {
       let baseUrl = 'https://medium.com/feed/'
       return baseUrl + feedString
    }
-
+console.log(Object.keys(req))
+console.log("body")
+console.log(req.body)
    for (let i = 0; i < req.body.mediumPublications.length; i++) {
       let pubStub = req.body.mediumPublications[i]
 
@@ -88,19 +90,16 @@ app.post('/getMediumPosts', async (req, res) => {
       // console.log(results)
 
       results.forEach(publicationResults => {
-
          // Not every site sends back the string used to find it. 
          // Eg, entering 'totalwar' as a subreddit to add returns objects that contain a subreddit property containing 'totalwar'
          // So we're extracting it from a url object instead and adding a new property ourselves.
 
-
          let str = publicationResults.feedUrl
          let publicationString = str.match(/(?<=feed\/).*$/)[0]
-       
-         
+             
 
          publicationResults.items.forEach( post => { 
-            post.publication = publicationString
+            post.mediumPublication = publicationString
             flattenedPosts.push(post) 
          })
       })

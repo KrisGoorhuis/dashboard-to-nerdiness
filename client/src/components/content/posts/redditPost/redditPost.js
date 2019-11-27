@@ -16,7 +16,8 @@ let RedditPost = (props) => {
       // var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
       // var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
       // year and removed:
-      var time = date + ' ' + month + ' ' + ' ' + hour + ':' + min;
+      // var time = date + ' ' + month + ' ' + ' ' + hour + ':' + min;
+      var time = `${date} ${month} ${hour}:${min}`
 
       return time;
     }

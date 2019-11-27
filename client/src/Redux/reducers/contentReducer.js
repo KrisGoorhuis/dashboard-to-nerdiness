@@ -1,15 +1,13 @@
 const initialState = {
-   redditFetchers: []
+   processedPosts: []
 }
 
 export default function reducer(state = initialState, action) {
    switch(action.type) {
-      case ('ADD_REDDIT_FETCHER'):
-         // let newFetchers = 
-
+      case ('SET_PROCESSED_POSTS'):
          return {
             ...state,
-            redditFetchers: state.redditFetchers
+            processedPosts: action.payload
          }
       default:
          return state
