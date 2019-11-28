@@ -5,6 +5,8 @@ import RedditPost from './posts/redditPost/redditPost.js'
 import MediumPost from './posts/mediumPost/mediumPost.js'
 
 let Main = (props) => {
+   let processedPosts = []
+
 
    let NoPosts = () => {
       return (
@@ -15,8 +17,9 @@ let Main = (props) => {
       )
    }
 
+
    useEffect(() => {
-      // sortAndFilter()
+      // sortAndFilterPosts()
    })
 
    return (
@@ -26,8 +29,8 @@ let Main = (props) => {
          </header>
          <main id="content_main">
             {
-              // If we have posts to display after processing
-               props.processedPosts.length > 0 ? 
+               // If we have posts to display after processing
+               props.processedPosts.length > 0 ?
                   props.processedPosts.map((post, index) => {
 
                      // Determine which type of post component to use
@@ -35,7 +38,7 @@ let Main = (props) => {
                         return <RedditPost post={post} key={index} />
                      }
                      else if (post.mediumPublication) {
-                        return <MediumPost post={post} />
+                        return <MediumPost post={post} key={index} />
                      }
                      else return <React.Fragment></React.Fragment> // Placeholder to get rid of a warning until this is finished. TODO.
                   })

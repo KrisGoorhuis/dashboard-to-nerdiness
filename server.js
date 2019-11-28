@@ -39,6 +39,11 @@ let r = new snoowrap({
 
 // *** Routes ***
 
+app.post('/checkSubreddit', async (req, res) => {
+   let results = await r.getSubreddit(req.body.subreddit).getHot()
+   res.send(results)
+})
+
 app.post('/getHotReddit', async (req, res) => {
    // Will get subreddits from database eventually. 
    // Right now it's called for every sub in the broswer JS's redux store, which draws from localStorage
@@ -49,6 +54,8 @@ app.post('/getHotReddit', async (req, res) => {
       return await r.getSubreddit(subreddit).getHot()
    }
 
+   console.log("reddit request body")
+   console.log(req.body)
    for (let i = 0; i < req.body.subreddits.length; i++) {
       fetchPromises.push(fetchPosts(req.body.subreddits[i]))
    }
@@ -76,9 +83,7 @@ app.post('/getMediumPosts', async (req, res) => {
       let baseUrl = 'https://medium.com/feed/'
       return baseUrl + feedString
    }
-console.log(Object.keys(req))
-console.log("body")
-console.log(req.body)
+   
    for (let i = 0; i < req.body.mediumPublications.length; i++) {
       let pubStub = req.body.mediumPublications[i]
 

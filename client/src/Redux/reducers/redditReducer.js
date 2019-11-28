@@ -2,6 +2,7 @@ const initialState = {
    subreddits: ['test'], // Text strings
    redditPosts: [],
    hiddenSubreddits: [],
+   fetchingReddit: true
 }
 
 // If this computer has used the site before, initialState will be updated before it's used. Same for other source sites (see other reducers)
@@ -70,6 +71,11 @@ export default function redditReducer(state = initialState, action) {
             hiddenSubreddits: _hidden
          }
          
+      case ('SET_FETCHING_REDDIT'):
+         return {
+            ...state,
+            fetchingReddit: action.payload
+         }
 
       default:
          return state

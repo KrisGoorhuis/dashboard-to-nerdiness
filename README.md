@@ -69,3 +69,6 @@ The main content column receives updated state, runs posts through an organizer/
 Wrangling different data structures into the same functionalities. 
 
 Not only do object properties differ, sometimes they're not even JS objects at all. Sometimes the data contained in one is missing from another, so it needs to be Regex'd out of a URL.
+
+#### Lessons:
+Don't fall into the trap of thinking all outer scope component variables need to be state variables. If you want to share something without rerenders mucking up your plans, just don't use the React thing! Not every thing needs to be an instantiation of the new tech thing. Do the original thing.

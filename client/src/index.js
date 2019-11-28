@@ -6,6 +6,7 @@ import * as serviceWorker from './serviceWorker';
 import store from './Redux/store.js'
 import { Provider } from 'react-redux'
 import 'font-awesome/css/font-awesome.min.css';
+import 'assets/font-awesome/css/font-awesome.min.css'
 
 
 ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById('root'));

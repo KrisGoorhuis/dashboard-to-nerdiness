@@ -5,8 +5,6 @@ import { connect } from 'react-redux'
 
 let SidebarControls = (props) => {
    let [text, setText] = useState('')
-   // let [checkingSubreddit, setCheckingSubreddit] = useState(false)
-   // let [invalidSubreddit, setInvalidSubreddit] = useState(false)
    let [infoMessage, setInfoMessage] = useState('')
 
    let handleChange = (e) => {
@@ -18,25 +16,29 @@ let SidebarControls = (props) => {
       e.preventDefault();
       setInfoMessage('Verifying subreddit exists...')
       
-      fetch('/getHotReddit', {
+      fetch('/checkSubreddit', {
          method: 'POST',
          headers: {'Content-Type': 'application/json'},
          body: JSON.stringify({"subreddit": text})
       })
       .then( response => response.json())
-      .then( json => {
+      .then( data => {
+         console.log(data)
          // Result length means we got a bunch of reddit posts back.
          if (props.subreddits.indexOf(text) !== -1) {
             setInfoMessage('Subreddit already listed.')
          }
-         else if (json.length > 0) { 
+         else if (data.length > 0) { 
             setInfoMessage('')
             props.dispatch({type: 'ADD_SUBREDDIT', payload: text})
-            props.dispatch({type: 'ADD_REDDIT_POSTS', payload: json})
+            props.dispatch({type: 'ADD_REDDIT_POSTS', payload: data})
          }
          else {
             setInfoMessage('Invalid subreddit. Did the text match exactly?')
          }
+      })
+      .catch( (error) => {
+         console.log(error)
       })
    }
 

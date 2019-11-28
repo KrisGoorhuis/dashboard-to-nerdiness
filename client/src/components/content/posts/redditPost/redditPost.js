@@ -6,7 +6,6 @@ let RedditPost = (props) => {
    // From https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
    function timeConverter(UNIX_timestamp){
       var a = new Date(UNIX_timestamp * 1000);
-      console.log(a)
       var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
       // var year = a.getFullYear();
       var month = months[a.getMonth()];
