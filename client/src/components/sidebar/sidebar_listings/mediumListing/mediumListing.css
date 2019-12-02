@@ -1,0 +1,101 @@
+.sidebar_listing {
+   display: flex;
+   flex-direction: column;
+   width: 100%;
+   /* height: 50px; */
+   align-items: flex-start;
+   justify-content: flex-start;
+}
+
+/* .sidebar_listing p {
+   margin: 0px;
+} */
+
+.sidebar_listing h4 {
+   padding: 10px;
+   margin-top: 20px;
+   font-weight: 300;
+   margin: 0px;
+}
+
+.sidebar_listing h4:hover {
+   cursor: pointer;
+}
+
+
+
+.popdown_controls {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   height: 0px;
+   padding: 0px;
+   padding-left: 20px;
+   margin: 0px;
+   transition: .2s;
+   opacity: 0;
+   pointer-events: none;
+}
+/* These two target the same element, 
+but the below is more specific and takes precedence */
+.expanded menu {
+   height: 30px;
+   transition: .2s;
+   opacity: 1;
+   pointer-events: auto;
+}
+
+
+.popdown_controls label {
+   display: flex;
+   align-items: center;
+   justify-content: space-between;
+   width: 50px;
+   border: 2px solid var(--green);
+   border-radius: 5px;
+   padding: 3px;
+   box-shadow: 0px;
+   margin: 5px;
+}
+
+.expanded menu label:hover {
+   cursor: pointer;
+   opacity: .7;
+}
+
+.listing_checkbox {
+   /* width: var(--sidebar-left-column) */
+   margin: 0px;
+}
+
+.remove_listing {
+   border: 2px solid var(--green);
+   border-radius: 5px;
+   padding: 3px;
+   box-shadow: 0px;
+
+}
+
+.remove_listing:hover {
+   opacity: .7;
+}
+
+.listing_details {
+   /* height: 0px; */
+   /* width: var(--sidebar-right-column); */
+   display: flex;
+   flex-direction: row;
+   justify-content: flex-start;
+   transition: .2s
+}
+
+.listing_details summary {
+   transition: .2s;
+}
+
+
+
+.displayed_checkbox {
+   color: blue;
+   background-color: blue;
+}

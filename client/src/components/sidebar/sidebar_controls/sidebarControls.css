@@ -1,3 +1,16 @@
+
+#controls_details_outer {
+   min-height: 50px;
+   display: flex;
+   justify-content: flex-start;
+
+}
+
+#controls_summary_outer {
+   display: flex;
+   justify-content: flex-start;
+}
+
 #controls_fieldset {
    margin: 0px;
    padding: 0px;
@@ -12,4 +25,16 @@
    display: flex;
    align-items: center;
    justify-content: center;
+}
+
+.controls_details_outer {
+   margin: 10px;
+   display: flex;
+   justify-content: flex-start;
+}
+
+.controls_summary_inner {
+   margin: 10px;
+   display: flex;
+   justify-content: flex-start;
 }

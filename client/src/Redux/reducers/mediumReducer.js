@@ -12,8 +12,6 @@ if (localStorage.getItem('mediumPublications')) {
 export default function mediumReducer(state = initialState, action) {
    switch (action.type) {
       case ('ADD_PUBLICATION'):
-
-
          return {
             ...state,
             mediumPublications: [...state.mediumPublications, action.payload]
@@ -37,7 +35,7 @@ export default function mediumReducer(state = initialState, action) {
             ...state,
             mediumPosts: addingPosts.concat(action.payload)
          }
-      case ('TOGGLE_HIDDEN_SUBREDDIT'):
+      case ('TOGGLE_HIDDEN_PUBLICATION'):
          let _hidden = [...state.hiddenMediumPublications]
          let index = _hidden.indexOf(action.payload)
 
@@ -58,6 +56,8 @@ export default function mediumReducer(state = initialState, action) {
             ...state,
             fetchingMedium: action.payload
          }
+
+      
 
       default:
          return state

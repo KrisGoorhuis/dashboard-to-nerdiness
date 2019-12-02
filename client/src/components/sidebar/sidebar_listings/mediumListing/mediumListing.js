@@ -47,7 +47,7 @@ let MediumListing = (props) => {
    return (
       // Child of an <ul>
       <li className="sidebar_listing" > 
-         <h3 onClick={toggleExpand}>{props.publication}</h3>
+         <h4 onClick={toggleExpand}>{props.publication}</h4>
          <menu className="popdown_controls">
             <label>
                Hide

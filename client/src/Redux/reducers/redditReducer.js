@@ -43,8 +43,9 @@ export default function redditReducer(state = initialState, action) {
          let _subreddits = [...state.subreddits]
          let _redditPosts = [...state.redditPosts]
 
+         
          _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
-         _redditPosts = _redditPosts.filter( post => post.subreddit !== action.payload)
+         _redditPosts = _redditPosts.filter( post => post.subreddit.toLowerCase() !== action.payload.toLowerCase())
          
          
          localStorage.setItem('subreddits', JSON.stringify(_subreddits))
@@ -75,6 +76,20 @@ export default function redditReducer(state = initialState, action) {
          return {
             ...state,
             fetchingReddit: action.payload
+         }
+
+      case ('FILTER_SUBREDDIT'):
+         let newFiltered = [...state.redditPosts]
+         newFiltered = newFiltered.filter((post) => {
+            console.log(post.subreddit + "  " + action.payload)
+            console.log(post.subreddit !== action.payload)
+            // subreddits that do not match are filtered out
+            return post.subreddit !== action.payload
+         })
+
+         return {
+            ...state,
+            redditPosts: newFiltered
          }
 
       default:

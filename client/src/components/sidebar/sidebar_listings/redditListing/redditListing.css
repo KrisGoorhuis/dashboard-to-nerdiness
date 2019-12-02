@@ -11,14 +11,14 @@
    margin: 0px;
 } */
 
-.sidebar_listing h3 {
+.sidebar_listing h4 {
    padding: 10px;
    margin-top: 20px;
    font-weight: 300;
    margin: 0px;
 }
 
-.sidebar_listing h3:hover {
+.sidebar_listing h4:hover {
    cursor: pointer;
 }
 

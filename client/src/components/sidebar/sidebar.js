@@ -8,18 +8,19 @@ import MediumListing from './sidebar_listings/mediumListing/mediumListing.js'
 
 
 
-
-
 let Sidebar = (props) => {
       return (
       <div id="sidebar_container">
+         <header id="sidebar_header">
+            <h2>Dashboard.</h2>
+            <div id="underscore"></div>
+         </header>
          <main id="sidebar_main">
-            
             <SidebarControls />
 
-            <header>Reddit</header>
+            <header className="site_header">Reddit</header>
             <section>
-               <ul id="site_listings">
+               <ul className="site_listings">
                   {/* For each item in logged in user's list of feeds or whatevers, .map */}
                   {
                      props.subreddits.map( (subreddit, index) => {
@@ -29,7 +30,7 @@ let Sidebar = (props) => {
                </ul>
             </section>
             
-            <header>Medium</header>
+            <header className="site_header">Medium</header>
             <section>
                <ul className="site_listings">
                   {

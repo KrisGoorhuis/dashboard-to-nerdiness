@@ -2,11 +2,30 @@ import React from 'react'
 import './mediumPost.css'
 
 let MediumPost = (props) => {
+
+   // Modified from https://stackoverflow.com/questions/847185/convert-a-unix-timestamp-to-time-in-javascript
+   function timeConverter(time) {
+      var a = new Date(Date.parse(time));
+      var months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      // var year = a.getFullYear();
+      var month = months[a.getMonth()];
+      var date = a.getDate();
+      var hour = a.getHours();
+      var min = a.getMinutes() < 10 ? '0' + a.getMinutes() : a.getMinutes()
+      // var sec = a.getSeconds() < 10 ? '0' + a.getSeconds() : a.getSeconds();
+      // var time = date + ' ' + month + ' ' + year + ' ' + hour + ':' + min + ':' + sec ;
+      // year and removed:
+      // var time = date + ' ' + month + ' ' + ' ' + hour + ':' + min;
+      var time = `${date} ${month} ${hour}:${min}`
+
+      return time;
+   }
+
    return (
-      <a 
-         className="medium_post_container" 
-         href={props.post.link} 
-         target="_blank" 
+      <a
+         className="medium_post_container"
+         href={props.post.link}
+         target="_blank"
          rel="noopener noreferrer"
       >
          <h5 className="medium_post_title">{props.post.title}</h5>

@@ -17,7 +17,6 @@ let RedditListing = (props) => {
    }
 
    function toggleExpand(e) {
-      console.log("toggling")
       if (e.target.parentNode.classList.contains('expanded')) {
          e.target.parentNode.classList.remove('expanded')
          setTimeout( () => {
@@ -38,7 +37,6 @@ let RedditListing = (props) => {
    }
 
    let handleChange = (e) => {
-      console.log(e.target)
       props.dispatch({type: 'TOGGLE_HIDDEN_SUBREDDIT', payload: props.subreddit})
    }
 
@@ -46,7 +44,7 @@ let RedditListing = (props) => {
    return (
       // Child of an <ul>
       <li className="sidebar_listing" > 
-         <h3 onClick={toggleExpand}>r/{props.subreddit}</h3>
+         <h4 onClick={toggleExpand}>r/{props.subreddit}</h4>
          <menu className="popdown_controls">
             <label>
                Hide

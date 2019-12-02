@@ -15,49 +15,76 @@ let SidebarControls = (props) => {
    let handleSubmit = (e) => {
       e.preventDefault();
       setInfoMessage('Verifying subreddit exists...')
-      
+
       fetch('/checkSubreddit', {
          method: 'POST',
-         headers: {'Content-Type': 'application/json'},
-         body: JSON.stringify({"subreddit": text})
+         headers: { 'Content-Type': 'application/json' },
+         body: JSON.stringify({ "subreddit": text })
       })
-      .then( response => response.json())
-      .then( data => {
-         console.log(data)
-         // Result length means we got a bunch of reddit posts back.
-         if (props.subreddits.indexOf(text) !== -1) {
-            setInfoMessage('Subreddit already listed.')
-         }
-         else if (data.length > 0) { 
-            setInfoMessage('')
-            props.dispatch({type: 'ADD_SUBREDDIT', payload: text})
-            props.dispatch({type: 'ADD_REDDIT_POSTS', payload: data})
-         }
-         else {
-            setInfoMessage('Invalid subreddit. Did the text match exactly?')
-         }
-      })
-      .catch( (error) => {
-         console.log(error)
-      })
+         .then(response => response.json())
+         .then(data => {
+            console.log(data)
+            // Result length means we got a bunch of reddit posts back.
+            if (props.subreddits.indexOf(text) !== -1) {
+               setInfoMessage('Subreddit already listed.')
+            }
+            else if (data.length > 0) {
+               setInfoMessage('')
+               props.dispatch({ type: 'ADD_SUBREDDIT', payload: text })
+               props.dispatch({ type: 'ADD_REDDIT_POSTS', payload: data })
+            }
+            else {
+               setInfoMessage('Invalid subreddit. Did the text match exactly?')
+            }
+         })
+         .catch((error) => {
+            console.log(error)
+         })
    }
 
    return (
-      <fieldset id="controls_fieldset">
-         <legend>Add a new subreddit</legend>
-         <form onSubmit={handleSubmit}>
-            <input 
-               type="text" 
-               placeholder="subreddit" 
-               onChange={handleChange}
-               value={text}
-            />
-            <input id="add_button" type="submit" value="Add" />
-         </form>
-         <p id="info_message">
-            {infoMessage}
-         </p>
-      </fieldset>
+      <details id="controls_details_outer">
+         <summary id="controls_summary_outer">Add</summary>
+
+         <details className="controls_details_inner">
+            <summary className="controls_summary_inner">New Subreddit</summary>
+            <fieldset id="controls_fieldset">
+               <legend>Add a new subreddit</legend>
+               <form onSubmit={handleSubmit}>
+                  <input
+                     type="text"
+                     placeholder="subreddit"
+                     onChange={handleChange}
+                     value={text}
+                  />
+                  <input id="add_button" type="submit" value="Add" />
+               </form>
+               <p id="info_message">
+                  {infoMessage}
+               </p>
+            </fieldset>
+         </details>
+
+         <details className="controls_details_inner">
+            <summary className="controls_summary_inner">Add Medium Publication</summary>
+            <fieldset id="controls_fieldset">
+               <legend>Add a new subreddit</legend>
+               <form onSubmit={handleSubmit}>
+                  <input
+                     type="text"
+                     placeholder="subreddit"
+                     onChange={handleChange}
+                     value={text}
+                  />
+                  <input id="add_button" type="submit" value="Add" />
+               </form>
+               <p id="info_message">
+                  {infoMessage}
+               </p>
+            </fieldset>
+         </details>
+
+      </details>
    )
 }
 
