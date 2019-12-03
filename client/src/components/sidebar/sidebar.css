@@ -36,7 +36,7 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
-   color: var(--lightblueish)
+   color: var(--lightblueish);
 }
 
 #underscore {
@@ -54,7 +54,7 @@
 
 #sidebar_main {
    position: relative;
-   color: var(--green);
+   color: aliceblue;
    height: 100%;
    width: 100%;
    z-index: 2;
@@ -63,8 +63,18 @@
    padding: 0px;
 }
 
+.source_container {
+   background-color: var(--green);
+   padding: 10px;
+   margin: 10px;
+}
+
 .site_header {
    font-size: 18px;
+}
+
+.site_header i {
+   margin: 5px;
 }
 
 /* #sidebar_main legend {

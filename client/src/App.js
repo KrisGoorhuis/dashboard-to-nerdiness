@@ -45,21 +45,17 @@ function App(props) {
 
    function sortAndFilterPosts() {
       let _posts = []
-      console.log("props")
-      console.log(props)
       _posts = _posts.concat(props.redditPosts)
       _posts = _posts.concat(props.mediumPosts)
 
       // Trues survive. Returned bool logic depends upon what type of post it is.
-      console.log(_posts)
 
       _posts = _posts.filter( (post) => {
          if (post.subreddit) {
-            return props.hiddenSubreddits.indexOf(post.subreddit) === -1 // True if post subreddit is not in list of hidden subreddits. Survives.
+            return props.hiddenSubreddits.indexOf(post.subreddit.toLowerCase()) === -1 // True if post subreddit is not in list of hidden subreddits. Survives.
          }
          else if (post.mediumPublication) {
-            console.log(post.mediumPublication)
-            return props.hiddenMediumPublications.indexOf(post.mediumPublication) === -1
+            return props.hiddenMediumPublications.indexOf(post.mediumPublication.toLowerCase()) === -1
          }
       })
 
@@ -91,8 +87,6 @@ function App(props) {
          return b - a
       })
       
-      console.log("Setting processed to")
-      console.log(_posts)
       props.dispatch({type: 'SET_PROCESSED_POSTS', payload: _posts})
    }
 
@@ -102,7 +96,7 @@ function App(props) {
       let promise2 = fetchRedditPosts()
 
       Promise.all([promise1, promise2]).then(() => {
-         // orderPosts()
+         // 
       })
    }
 

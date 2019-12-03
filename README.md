@@ -73,6 +73,12 @@ Not only do object properties differ, sometimes they're not even JS objects at a
 #### Lessons:
 Don't fall into the trap of thinking all outer scope component variables need to be state variables. If you want to share something without rerenders mucking up your plans, just don't use the React thing! Not every thing needs to be an instantiation of the new tech thing. Do the original thing.
 
+Keep track of the form of your objects somehow. Or at least keep them consistent.
+
+Libraries save so, so much work. And their distributed solution is probably cleaner than your first idea.
+
+Design layout beforehand. It's not just for aesthetics, but for code structure. Shooting from the hip is bad for things you intend to finish.
+
 #### Other difficulties:
 Case sensitivity in equivalence checks. Simple to address, overly hard bug to find.
 Make sure you know whether a method modifies the original or returns something new.

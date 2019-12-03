@@ -14,17 +14,19 @@ export default function mediumReducer(state = initialState, action) {
       case ('ADD_PUBLICATION'):
          return {
             ...state,
-            mediumPublications: [...state.mediumPublications, action.payload]
+            mediumPublications: [...state.mediumPublications, action.payload.toLowerCase()]
          }
-      case ('REMOVE_PUBLICATION'):
+      case ('REMOVE_MEDIUM_PUBLICATION'):
          let _mediumPublications = [...state.mediumPublications]
-         let removingPosts = [...state.mediumPosts]
+         let _mediumPosts = [...state.mediumPosts]
 
+         _mediumPublications = _mediumPublications.filter(pub => pub !== action.payload.toLowerCase())
+         _mediumPosts = _mediumPosts.filter(post => post.mediumPublication !== action.payload.toLowerCase())
 
          return {
             ...state,
-            mediumPublications: _mediumPublications.filter(pub => pub !== action.payload),
-            mediumPosts: removingPosts.filter(post => post.publication !== action.payload.publication)
+            mediumPublications: _mediumPublications,
+            mediumPosts: _mediumPosts,
          }
 
       case ('ADD_MEDIUM_POSTS'):
@@ -37,7 +39,7 @@ export default function mediumReducer(state = initialState, action) {
          }
       case ('TOGGLE_HIDDEN_PUBLICATION'):
          let _hidden = [...state.hiddenMediumPublications]
-         let index = _hidden.indexOf(action.payload)
+         let index = _hidden.indexOf(action.payload.toLowerCase())
 
          if (index !== -1) {
             _hidden.splice(index, 1)

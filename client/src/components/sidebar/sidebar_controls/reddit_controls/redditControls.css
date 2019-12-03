@@ -1,0 +1,30 @@
+/* Shared styling with other control 
+elements? Be careful, Kris. 
+Unsure how to structure properly.*/
+
+.controls_details_inner {
+   padding: 8px;
+   /* display: flex;
+   justify-content: flex-start; */
+   background-color: var(--lightblueish);
+}
+
+.controls_summary_inner {
+   margin-bottom: 5px;
+   /* https://stackoverflow.com/a/4407335 */
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+}
+
+.controls_summary_inner:focus {
+   outline: none;
+}
+
+legend {
+   font-size: 14px;
+}

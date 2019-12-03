@@ -7,8 +7,10 @@
 }
 
 #controls_summary_outer {
-   display: flex;
-   justify-content: flex-start;
+   /* display: flex;
+   justify-content: flex-start; */
+   padding: 4px;
+   margin-left: 20px;
 }
 
 #controls_fieldset {
@@ -34,7 +36,8 @@
 }
 
 .controls_summary_inner {
-   margin: 10px;
+   padding: 10px;
    display: flex;
    justify-content: flex-start;
+   background-color: var(--lightblueish)
 }

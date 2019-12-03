@@ -13,6 +13,12 @@ const port = process.env.PORT || 5000
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+
+// *** Initialization ***
+
+
+
 let tempData = {
    subreddits: ['totalwar', 'games'],
    mediumFeeds: [],
@@ -26,6 +32,12 @@ let r = new snoowrap({
    password: config.password
 });
 
+
+
+
+
+// *** Helper functions ***
+
 // From https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript
 // function getRandomID() {
 //   return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -34,6 +46,12 @@ let r = new snoowrap({
 //     return v.toString(16);
 //   });
 // }
+
+function createUrl(feedString) {
+   let baseUrl = 'https://medium.com/feed/'
+   return baseUrl + feedString
+}
+
 
 
 
@@ -75,14 +93,15 @@ app.post('/saveMediumFeed', async (req, res) => {
    // Save to database
 })
 
+app.post('/checkMediumPublication', async (req, res) => {
+   let results = await RSSParser.parseURL(createUrl(req.body.publication))
+   res.send(results)
+})
+
 app.post('/getMediumPosts', async (req, res) => {
    let publications = []
    // Will retrieve feed urls from database in the future
 
-   function createUrl(feedString) {
-      let baseUrl = 'https://medium.com/feed/'
-      return baseUrl + feedString
-   }
    
    for (let i = 0; i < req.body.mediumPublications.length; i++) {
       let pubStub = req.body.mediumPublications[i]

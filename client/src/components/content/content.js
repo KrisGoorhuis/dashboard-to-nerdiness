@@ -12,7 +12,7 @@ let Main = (props) => {
       return (
          <aside id="no_posts">
             <p>No posts!</p>
-            <span>Unhide or add some subreddits</span>
+            <span>Unhide or add some sources on the left.</span>
          </aside>
       )
    }
@@ -105,7 +105,7 @@ let Main = (props) => {
                   // If we don't have posts - either because we are currently fetching or because they were all processed out
                   <aside id="loading_panel">
                      {
-                        props.fetchingReddit || props.fetchingMedium < 1 ?
+                        props.fetchingReddit || props.fetchingMedium ?
                            "Retrieving..."
                            :
                            <NoPosts />

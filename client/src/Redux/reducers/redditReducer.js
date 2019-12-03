@@ -10,6 +10,9 @@ const initialState = {
 if (localStorage.getItem('subreddits')) {
    initialState.subreddits = JSON.parse(localStorage.getItem('subreddits'))
 }
+if (localStorage.getItem('hiddenSubreddits')) {
+   initialState.hiddenSubreddits = JSON.parse(localStorage.getItem('hiddenSubreddits'))
+}
 
 export default function redditReducer(state = initialState, action) {
 
@@ -32,11 +35,11 @@ export default function redditReducer(state = initialState, action) {
          }
 
       case ('ADD_SUBREDDIT'):
-         localStorage.setItem('subreddits', JSON.stringify([...state.subreddits, action.payload]))
+         localStorage.setItem('subreddits', JSON.stringify([...state.subreddits, action.payload.toLowerCase()]))
 
          return {
             ...state,
-            subreddits: [...state.subreddits, action.payload]
+            subreddits: [...state.subreddits, action.payload.toLowerCase()]
          }
 
       case ('REMOVE_SUBREDDIT'):
@@ -66,6 +69,8 @@ export default function redditReducer(state = initialState, action) {
          else {
             _hidden.push(action.payload)
          }
+
+         localStorage.setItem('hiddenSubreddits', JSON.stringify(_hidden))
 
          return {
             ...state,

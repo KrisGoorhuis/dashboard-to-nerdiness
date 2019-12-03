@@ -28,7 +28,7 @@ body {
   --reddishbrown: #74544A;
 
   --sidebar-width: 300px;
-  --main-content-left-padding: 320px;
+  --main-content-left-padding: 340px;
 
   --sidebar-left-column: calc(100% * 1/3);
   --sidebar-right-column: calc(100% * 2/3);

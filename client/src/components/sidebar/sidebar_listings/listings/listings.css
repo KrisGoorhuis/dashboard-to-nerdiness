@@ -1,3 +1,12 @@
+/* This pairing format doesn't work as well
+   when there are two files using the same
+   CSS.
+   
+   Fairly certain there is some rule overlap 
+   with the other Listing files. */
+
+
+
 .sidebar_listing {
    display: flex;
    flex-direction: column;
@@ -11,18 +20,28 @@
    margin: 0px;
 } */
 
-.sidebar_listing h4 {
+.title_row {
+   display: flex;
+}
+
+.title_row:hover {
+   cursor: pointer;
+}
+
+.title_row i {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   pointer-events: none;
+}
+
+.title_row h4 {
    padding: 10px;
    margin-top: 20px;
    font-weight: 300;
    margin: 0px;
+   pointer-events: none;
 }
-
-.sidebar_listing h4:hover {
-   cursor: pointer;
-}
-
-
 
 .popdown_controls {
    display: flex;
@@ -39,10 +58,12 @@
 /* These two target the same element, 
 but the below is more specific and takes precedence */
 .expanded menu {
-   height: 30px;
+   height: 25px;
    transition: .2s;
    opacity: 1;
    pointer-events: auto;
+   display: flex;
+   padding-bottom: 5px;
 }
 
 
@@ -51,7 +72,7 @@ but the below is more specific and takes precedence */
    align-items: center;
    justify-content: space-between;
    width: 50px;
-   border: 2px solid var(--green);
+   /* border: 2px solid var(--reddishbrown); */
    border-radius: 5px;
    padding: 3px;
    box-shadow: 0px;
@@ -78,6 +99,14 @@ but the below is more specific and takes precedence */
 
 .remove_listing:hover {
    opacity: .7;
+}
+
+i {
+   width: 20px;
+}
+
+i:hover {
+   cursor: pointer;
 }
 
 .listing_details {

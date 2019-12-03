@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './mediumListing.css'
+import './listings.css'
 import { connect } from 'react-redux'
 
 
@@ -18,6 +18,7 @@ let MediumListing = (props) => {
 
    function toggleExpand(e) {
       console.log("toggling")
+      console.log(e.target)
       if (e.target.parentNode.classList.contains('expanded')) {
          e.target.parentNode.classList.remove('expanded')
          setTimeout( () => {
@@ -31,7 +32,7 @@ let MediumListing = (props) => {
 
    function confirmRemoval() {
       console.log("Dispatching")
-      props.dispatch({type: 'REMOVE_PUBLICATION', payload: props.publication})
+      props.dispatch({type: 'REMOVE_MEDIUM_PUBLICATION', payload: props.publication})
    }
 
    function handleRemove() {
@@ -46,8 +47,13 @@ let MediumListing = (props) => {
 
    return (
       // Child of an <ul>
-      <li className="sidebar_listing" > 
-         <h4 onClick={toggleExpand}>{props.publication}</h4>
+      <li className="sidebar_listing">
+         {/* pointer-events: none CSS for i and h4 - otherwise toggleExpand,
+         which deals in parent nodes, can fail to start at our div  */}
+         <div className="title_row" onClick={toggleExpand}> 
+            <i className="fa fa-bars" aria-hidden="true"></i>
+            <h4>{props.publication}</h4>
+         </div>
          <menu className="popdown_controls">
             <label>
                Hide
