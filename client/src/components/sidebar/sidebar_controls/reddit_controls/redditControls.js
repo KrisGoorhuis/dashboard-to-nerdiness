@@ -15,6 +15,11 @@ let RedditControls = (props) => {
       e.preventDefault();
       setInfoMessage('Verifying subreddit exists...')
 
+      if (props.subreddits.indexOf(redditText) !== -1) {
+         setInfoMessage('Subreddit already listed.')
+         return
+      }
+
       fetch('/checkSubreddit', {
          method: 'POST',
          headers: { 'Content-Type': 'application/json' },
@@ -24,10 +29,8 @@ let RedditControls = (props) => {
          .then(data => {
             console.log(data)
             // Result length means we got a bunch of reddit posts back.
-            if (props.subreddits.indexOf(redditText) !== -1) {
-               setInfoMessage('Subreddit already listed.')
-            }
-            else if (data.length > 0) {
+            
+            if (data.length > 0) {
                setInfoMessage('')
                setRedditText('')
                props.dispatch({ type: 'ADD_SUBREDDIT', payload: redditText })

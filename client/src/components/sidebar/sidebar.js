@@ -10,7 +10,7 @@ import RedditListing from './sidebar_listings/listings/redditListing.js'
 import MediumListing from './sidebar_listings/listings/mediumListing.js'
 
 
-let Sidebar = (props) => {
+export let Sidebar = (props) => {
 
 
    console.log(props)

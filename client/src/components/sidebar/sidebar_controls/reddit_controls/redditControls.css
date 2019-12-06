@@ -3,9 +3,6 @@ elements? Be careful, Kris.
 Unsure how to structure properly.*/
 
 .controls_details_inner {
-   padding: 8px;
-   /* display: flex;
-   justify-content: flex-start; */
    background-color: var(--lightblueish);
 }
 
@@ -18,7 +15,11 @@ Unsure how to structure properly.*/
        -moz-user-select: none; /* Old versions of Firefox */
         -ms-user-select: none; /* Internet Explorer/Edge */
             user-select: none; /* Non-prefixed version, currently
-                                  supported by Chrome, Opera and Firefox */
+         supported by Chrome, Opera and Firefox */
+   height: 40px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
 }
 
 .controls_summary_inner:focus {

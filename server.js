@@ -94,8 +94,13 @@ app.post('/saveMediumFeed', async (req, res) => {
 })
 
 app.post('/checkMediumPublication', async (req, res) => {
-   let results = await RSSParser.parseURL(createUrl(req.body.publication))
-   res.send(results)
+   try {
+      let results = await RSSParser.parseURL(createUrl(req.body.publication))
+      res.send(results)
+   }
+   catch {
+      res.send({empty: "empty"})
+   }
 })
 
 app.post('/getMediumPosts', async (req, res) => {

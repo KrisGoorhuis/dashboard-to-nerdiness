@@ -6,9 +6,17 @@ import Content from './components/content/content.js'
 import Sidebar from './components/sidebar/sidebar.js'
 
 
-function App(props) {
+export function App(props) {
    let redditPosts = []
    let mediumPosts = []
+
+   function addRedditPosts(posts) {
+      const action = {
+         type: 'ADD_REDDIT_POSTS',
+         payload: posts
+      }
+      props.dispatch(action)
+   }
 
    function fetchRedditPosts() {
       props.dispatch({type: 'SET_FETCHING_REDDIT', payload: true})
@@ -20,7 +28,7 @@ function App(props) {
       .then( response => response.json())
       .then( data => {
          redditPosts = data
-         props.dispatch({type: 'ADD_REDDIT_POSTS', payload: data})
+         addRedditPosts(data)
          props.dispatch({type: 'SET_FETCHING_REDDIT', payload: false})
          // sortAndFilterPosts()
       })

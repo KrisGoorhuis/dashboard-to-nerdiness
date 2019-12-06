@@ -10,9 +10,6 @@ const initialState = {
 if (localStorage.getItem('subreddits')) {
    initialState.subreddits = JSON.parse(localStorage.getItem('subreddits'))
 }
-if (localStorage.getItem('hiddenSubreddits')) {
-   initialState.hiddenSubreddits = JSON.parse(localStorage.getItem('hiddenSubreddits'))
-}
 
 export default function redditReducer(state = initialState, action) {
 

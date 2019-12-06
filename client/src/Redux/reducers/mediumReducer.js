@@ -1,5 +1,5 @@
 const initialState = {
-   mediumPublications: ['the-launchism', 'free-code-camp'],
+   mediumPublications: [],
    mediumPosts: [],
    hiddenMediumPublications: [],
    fetchingMedium: true,
@@ -12,6 +12,8 @@ if (localStorage.getItem('mediumPublications')) {
 export default function mediumReducer(state = initialState, action) {
    switch (action.type) {
       case ('ADD_PUBLICATION'):
+         localStorage.setItem('mediumPublications', JSON.stringify([...state.mediumPublications, action.payload.toLowerCase()]))
+
          return {
             ...state,
             mediumPublications: [...state.mediumPublications, action.payload.toLowerCase()]
@@ -58,8 +60,6 @@ export default function mediumReducer(state = initialState, action) {
             ...state,
             fetchingMedium: action.payload
          }
-
-      
 
       default:
          return state

@@ -28,10 +28,8 @@ let MediumControls = (props) => {
       })
          .then(response => response.json())
          .then(data => {
-            console.log(data)
-            // Result length means we got a bunch of reddit posts back.
-            
-            if (data.length > 0) {
+            // This receives a JSON object, not an array. So we can't check length as we did in the Reddit controls. Choose a key!
+            if (data.generator) {
                setInfoMessage('')
                setMediumText('')
                props.dispatch({ type: 'ADD_PUBLICATION', payload: mediumText })
