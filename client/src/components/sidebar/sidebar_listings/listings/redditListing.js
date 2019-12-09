@@ -3,7 +3,7 @@ import './listings.css'
 import { connect } from 'react-redux'
 
 
-let RedditListing = (props) => {
+export let RedditListing = (props) => {
    let [confirming, setConfirming] = useState(false)
    let [checked, setChecked] = useState(false)
    let checkbox = useRef(null)
