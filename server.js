@@ -1,10 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
-// const fetch = require('node-fetch');
-const config = require('./config.json')
 const snoowrap = require('snoowrap') // Reddit API wrapper
 const Parser = require('rss-parser')
+let config
+try {
+   config = require('./config.json')
+}
+catch {
+   console.log("No config file. Using environmental variables instead.")
+}
 
 const RSSParser = new Parser()
 const app = express()
@@ -26,10 +31,10 @@ let tempData = {
 
 let r = new snoowrap({
    userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
-   clientId: config.client_id,
-   clientSecret: config.client_secret,
-   username: config.username,
-   password: config.password
+   clientId: config.client_id || process.env.CLIENT_ID,
+   clientSecret: config.client_secret || process.env.CLIENT_SECRET,
+   username: config.username || process.env.USERNAME,
+   password: config.password || process.env.PASSWORD,
 });
 
 
