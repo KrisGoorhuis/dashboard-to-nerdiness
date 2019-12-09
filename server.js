@@ -31,10 +31,10 @@ let tempData = {
 
 let r = new snoowrap({
    userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
-   clientId: config.client_id || process.env.CLIENT_ID,
-   clientSecret: config.client_secret || process.env.CLIENT_SECRET,
-   username: config.username || process.env.USERNAME,
-   password: config.password || process.env.PASSWORD,
+   clientId: process.env.CLIENT_ID || config.client_id, 
+   clientSecret: process.env.CLIENT_SECRET || config.client_secret,
+   username: process.env.USERNAME || config.username,
+   password: process.env.PASSWORD || config.password,
 });
 
 
