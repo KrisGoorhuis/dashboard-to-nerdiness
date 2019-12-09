@@ -12,7 +12,7 @@ let RedditListing = (props) => {
    let ConfirmationBox = () => {
       // The parent reverts to checkboxes being shown, so the cancel button here has no onClick
       return (
-         <div>
+         <div className="confirmation_box">
             <i className="fa fa-check-circle" onClick={confirmRemoval}></i>
             <i className="fa fa-times-circle"></i>
          </div>
