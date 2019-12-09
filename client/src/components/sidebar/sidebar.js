@@ -11,9 +11,6 @@ import MediumListing from './sidebar_listings/listings/mediumListing.js'
 
 
 export let Sidebar = (props) => {
-
-
-   console.log(props)
       return (
       <div id="sidebar_container">
          <header id="sidebar_header">

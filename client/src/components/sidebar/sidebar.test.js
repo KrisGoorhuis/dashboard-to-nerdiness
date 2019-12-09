@@ -6,6 +6,7 @@ let propsMock = {
    subreddits: [0, 1, 2],
    mediumPublications: [0, 1, 2]
 }
+
 describe('sidebar', () => {
    it('renders without crashing', () => {
       expect(shallow(<Sidebar {...propsMock} />)).toHaveLength(1)

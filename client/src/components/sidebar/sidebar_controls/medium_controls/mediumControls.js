@@ -3,13 +3,18 @@ import { connect } from 'react-redux'
 
 import './mediumControls.css'
 
-let MediumControls = (props) => {
+export let MediumControls = (props) => {
    let [infoMessage, setInfoMessage] = useState('')
    let [mediumText, setMediumText] = useState('')
+   let [testState, setTestState] = useState('')
 
    function handleMediumChange (e) {
       setMediumText(e.target.value)
       setInfoMessage('')
+   }
+
+   function test() {
+      setTestState('success')
    }
 
    function handleMediumSubmit (e) {
@@ -49,7 +54,7 @@ let MediumControls = (props) => {
          <summary className="controls_summary_inner">New</summary>
             <fieldset id="controls_fieldset">
                <legend>Add a new Medium publication</legend>
-               <form onSubmit={handleMediumSubmit}>
+               <form onSubmit={handleMediumSubmit} id="medium_controls_form">
                   <input
                      type="text"
                      placeholder="publication-name"

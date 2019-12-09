@@ -44,11 +44,11 @@ export function App(props) {
       .then( response => response.json())
       .then( data => {
          mediumPosts = data
+         console.log(data)
          props.dispatch({type: 'ADD_MEDIUM_POSTS', payload: data})
          props.dispatch({type: 'SET_FETCHING_MEDIUM', payload: false})
          // sortAndFilterPosts()
       })
-
    }
 
    function sortAndFilterPosts() {

@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import './redditControls.css'
 
-let RedditControls = (props) => {
+export let RedditControls = (props) => {
    let [redditText, setRedditText] = useState('')
    let [infoMessage, setInfoMessage] = useState('')
    

@@ -79,6 +79,8 @@ Libraries save so, so much work. And their distributed solution is probably clea
 
 Design layout beforehand. It's not just for aesthetics, but for code structure. Shooting from the hip is bad for things you intend to finish.
 
+"The last 10% takes 90% of the time". Turns out it's true. Yeah those Reddit listings display images from URLs in their objects, but sometimes the URL is "spoiler" and we get the missing resource icon. Rare and minor, but it needs to be done.
+
 #### Other difficulties:
 Case sensitivity in equivalence checks. Simple to address, overly hard bug to find.
 Make sure you know whether a method modifies the original or returns something new.

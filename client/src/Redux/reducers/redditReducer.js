@@ -1,5 +1,5 @@
 const initialState = {
-   subreddits: ['test'], // Text strings
+   subreddits: [], // Text strings
    redditPosts: [],
    hiddenSubreddits: [],
    fetchingReddit: true
@@ -7,8 +7,12 @@ const initialState = {
 
 // If this computer has used the site before, initialState will be updated before it's used. Same for other source sites (see other reducers)
 // localStorage.removeItem('subreddits')
-if (localStorage.getItem('subreddits')) {
+if (localStorage.getItem('subreddits')) { 
    initialState.subreddits = JSON.parse(localStorage.getItem('subreddits'))
+}
+
+if (localStorage.getItem('hiddenSubreddits')) {
+   initialState.hiddenSubreddits = JSON.parse(localStorage.getItem('hiddenSubreddits'))
 }
 
 export default function redditReducer(state = initialState, action) {
@@ -42,7 +46,7 @@ export default function redditReducer(state = initialState, action) {
       case ('REMOVE_SUBREDDIT'):
          let _subreddits = [...state.subreddits]
          let _redditPosts = [...state.redditPosts]
-
+         console.log("We just removed one?")
          
          _subreddits = _subreddits.filter( subreddit => subreddit !== action.payload)
          _redditPosts = _redditPosts.filter( post => post.subreddit.toLowerCase() !== action.payload.toLowerCase())

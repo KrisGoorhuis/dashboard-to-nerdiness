@@ -6,7 +6,7 @@ import { connect } from 'react-redux'
 let RedditListing = (props) => {
    let [confirming, setConfirming] = useState(false)
    let [checked, setChecked] = useState(false)
-   // let checkbox = useRef(null)
+   let checkbox = useRef(null)
 
 
    let ConfirmationBox = () => {
@@ -59,6 +59,22 @@ let RedditListing = (props) => {
       }
    }
 
+   function determineChecked() {
+      console.log("Determine!")
+      props.hiddenSubreddits.forEach((subreddit) => {
+         if (props.subreddit === subreddit) {
+            console.log("setting defaultChecked to true")
+            checkbox.setAttribute("defaultChecked", true)
+            console.log(checkbox.getAttribute("defaultChecked"))
+         }
+      })
+   }
+
+   useEffect(() => {
+      // determineChecked()
+
+   }, [])
+
    return (
       // Child of an <ul>
       <li className="sidebar_listing" >
@@ -74,7 +90,7 @@ let RedditListing = (props) => {
                   name="checkerbox"
                   type="checkbox"
                   onChange={handleChange}
-               // ref="checkbox"
+                  ref={checkbox}
                />
             </label>
             <div className="remove_listing" onClick={handleRemove}>

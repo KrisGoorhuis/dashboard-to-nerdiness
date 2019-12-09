@@ -7,6 +7,11 @@ const initialState = {
 
 if (localStorage.getItem('mediumPublications')) {
    initialState.mediumPublications = JSON.parse(localStorage.getItem('mediumPublications'))
+   // console.log(initialState)
+}
+
+if (localStorage.getItem('hiddenMediumPublications')) {
+   initialState.hiddenMediumPublications = JSON.parse(localStorage.getItem('hiddenMediumPublications'))
 }
 
 export default function mediumReducer(state = initialState, action) {
@@ -49,6 +54,8 @@ export default function mediumReducer(state = initialState, action) {
          else {
             _hidden.push(action.payload)
          }
+
+         localStorage.setItem('hiddenMediumPublications', JSON.stringify(_hidden))
 
          return {
             ...state,
