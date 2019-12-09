@@ -11,7 +11,7 @@ it('should not add a subreddit if that subreddit is already listed', () => {
    beforeEach(() => {
    })
    let node = document.createElement('div')
-   let component = ReactDOM.render(<RedditControls />, node)
+   let component = ReactDOM.render(<RedditControls {...propsMock} />, node)
 
    component.find('input[type=text]').simulate('submit', {
       target: {
