@@ -94,11 +94,11 @@ but the below is more specific and takes precedence */
    border-radius: 5px;
    padding: 3px;
    box-shadow: 0px;
-
 }
 
 .remove_listing:hover {
    opacity: .7;
+   cursor: pointer;
 }
 
 i {

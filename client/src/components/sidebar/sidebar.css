@@ -30,7 +30,7 @@
 
 
 #sidebar_header {
-   height: 300px;
+   /* height: 300px; */
    width: 100%;
    display: flex;
    flex-direction: column;
@@ -41,7 +41,7 @@
 
 #underscore {
    width: 100%;
-   margin-top: 40px;
+   /* margin-top: 40px; */
    height: 2px;
    border-radius: 2px;
    background-color: var(--lightblueish);

@@ -5,6 +5,8 @@ This could probably done without a full server, but you know what? I want to mak
 
 The intention is to integrate a remote database and handle user logins, but for the time being everything is held in each individual's localStorage.
 
+Find the hosted version on [Heroku](https://dashboard-to-nerdiness.herokuapp.com/)
+
 ### Server
 Made with [this article](https://www.freecodecamp.org/news/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0/)
 
@@ -12,11 +14,6 @@ Everything in CRA's (create-react-app's) directory stays just as it normally wou
 CRA has its own Webpack server going, as I understand it, and adding a `"proxy": "http://localhost:5000/"` to the client's `package.json` just moves everything through the port our `server.js` is listening on.
 
 https://create-react-app.dev/docs/proxying-api-requests-in-development/
-
-### Sidebar
-The top contains components for each site type - these add new listings from that site.
-
-We have a listing component type for each of the sites. This component contains hide and removal controls.
 
 
 ### Center
@@ -27,7 +24,7 @@ They are run through a function that organizes based on publishing date (after m
 Each post can be clicked to open the story in a new tab.
 
 ### APIs
-There are two endpoints for each site - one that handles collecting all the posts that fit the user's criteria (what foods they've chosen) and one that saves this criteria to a database. Or will when we reach that point. TODO.
+There are two main endpoints for each site - one that handles collecting all the posts that fit the user's criteria (what feedds they've chosen) and one that saves this criteria to a database. Or will when we reach that point. TODO.
 
 The retrieval endpoints handle formatting, flattening, and, where needed, manipulates the data to make things more uniform on the client side.
 
@@ -38,7 +35,7 @@ This means a lot of restated code. Which feels bad (and as though it must repres
 
 
 #### Reddit
-OAuth was relatively inscrutable with no plain Node.js solutions to find out there, and we don't want to deal with token expiry. So we use a third party wrap called [Snoowrap](https://github.com/not-an-aardvark/snoowrap) (what every Node example used) with what we created as a "script" type app on Reddit.
+We use a third party wrap called [Snoowrap](https://github.com/not-an-aardvark/snoowrap) with what we created as a "script" type app on Reddit. This simplifies a lot of overhead OAuth things - nice at simple.
 
 Using an existing Reddit account, create an app in user preferences of the script type.
 It will generate an app ID and app secret. Pass these and your account name / password to snoowrap, then just go!
@@ -49,10 +46,13 @@ title
 permalink
 author
 comments (array)
-
+thumbnail
 
 #### Medium
-
+title
+isoDate
+mediumPublication
+creator
 
 #### Progression flow
 Users add a content type on the left (we have a few defaults).

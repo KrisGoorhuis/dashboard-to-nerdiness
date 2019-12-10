@@ -22,6 +22,10 @@ Unsure how to structure properly.*/
    justify-content: center;
 }
 
+.controls_summary_inner:hover {
+   cursor: pointer;
+}
+
 .controls_summary_inner:focus {
    outline: none;
 }

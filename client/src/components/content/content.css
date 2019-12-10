@@ -10,6 +10,9 @@
    display: flex;
    justify-content: flex-start;
    padding-left: 50px;
+   margin-right: 50px;
+   color: white;
+   border-bottom: 1px solid var(--green);
 }
 
 #content_main {
@@ -27,6 +30,7 @@
    display: flex;
    justify-content: center;
    align-items: center;
+   width: 100%;
 }
 
 #no_posts {

@@ -84,7 +84,7 @@ let Main = (props) => {
    return (
       <article id="content_container">
          <header>
-            <h3>Header Text</h3>
+            <h2>Header Text</h2>
          </header>
          <main id="content_main">
             {

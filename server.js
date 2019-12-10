@@ -23,19 +23,25 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // *** Initialization ***
 
 
-
-let tempData = {
-   subreddits: ['totalwar', 'games'],
-   mediumFeeds: [],
+let r
+if (process.env.HEROKU === true || process.env.HEROKU === 'true') {
+   r = new snoowrap({
+      userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      username: process.env.USERNAME,
+      password: process.env.PASSWORD,
+   });
 }
-
-let r = new snoowrap({
-   userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
-   clientId: process.env.CLIENT_ID || config.client_id, 
-   clientSecret: process.env.CLIENT_SECRET || config.client_secret,
-   username: process.env.USERNAME || config.username,
-   password: process.env.PASSWORD || config.password,
-});
+else {
+   r = new snoowrap({
+      userAgent: 'amalgamation dashboard thing .1 by /u/Important_Quit',
+      clientId: config.client_id, 
+      clientSecret: config.client_secret,
+      username: config.username,
+      password: config.password,
+   });
+}
 
 
 
