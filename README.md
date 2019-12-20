@@ -1,11 +1,14 @@
 ## Concept
-Nerdy internet content aggregator. At least mine will be nerdy.
+Work-in-progress internet content aggregator. Find the [hosted version on Heroku](https://dashboard-to-nerdiness.herokuapp.com/)
 
-This could probably done without a full server, but you know what? I want to make a server.
+This document is half a way of organizing my own thoughts, half explanation of what the project is about.
+
+The user can add feeds from various sites (so far just Reddit and Medium).
+The app will track preferences between sessions, retrieve data of different formats, and collate them into a single feed.
 
 The intention is to integrate a remote database and handle user logins, but for the time being everything is held in each individual's localStorage.
 
-Find the hosted version on [Heroku](https://dashboard-to-nerdiness.herokuapp.com/)
+
 
 ### Server
 Made with [this article](https://www.freecodecamp.org/news/how-to-make-create-react-app-work-with-a-node-backend-api-7c5c48acb1b0/)
